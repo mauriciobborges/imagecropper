@@ -2,6 +2,10 @@
 
 var $uploadCrop;
 
+var downloadImage = function(){
+    ReImg.fromCanvas($('#imageResult')[0]).downloadPng();
+}
+
 function readFile(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
@@ -39,9 +43,19 @@ $('#download').on('click', function (ev) {
     type: 'canvas',
     size: 'viewport'
   }).then(function (resp) {
-    var dl = document.createElement('a');
-    dl.setAttribute('href', resp);
-    dl.setAttribute('download', 'image.png');
-    dl.click();
+    var dl = document.createElement('img');
+    dl.setAttribute('id', 'imageResult')
+    dl.setAttribute('src', resp);
+    dl.setAttribute('style', 'display: none;');
+    $('#result').append(dl);
+
+    Caman(dl, function () {
+      this.saturation(-100);
+      this.render();
+      downloadImage();
+    });
+
+
   });
 });
+
