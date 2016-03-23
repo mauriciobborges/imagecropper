@@ -173,6 +173,16 @@ background: #ccc;
 	margin: 5px;
 }
 
+.flex-row {
+	flex-direction: row;
+}
+
+.title {
+	font-size: 40px;
+	font-family: georgia;
+	color: rgba(25, 25, 25, 0.8);
+}
+
 #download, #image + label {
 	padding-top: 15px;
 	padding-bottom: 15px;
@@ -204,4 +214,7 @@ background: #ccc;
 #image + label:hover,
 #download:hover {
 	background-color: #fafafa;
+
+#image + label:active, #download:active, #image + label:focus, #download:focus {
+	outline: 0;
 }
