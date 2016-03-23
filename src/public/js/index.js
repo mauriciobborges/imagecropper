@@ -2,10 +2,6 @@
 
 var $uploadCrop;
 
-var downloadImage = function(){
-    ReImg.fromCanvas($('#imageResult')[0]).downloadPng();
-}
-
 function readFile(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
@@ -38,6 +34,7 @@ $uploadCrop = $('#cropper').croppie({
 $('#image').on('change', function () {
   readFile(this);
 });
+
 $('#download').on('click', function (ev) {
   $uploadCrop.croppie('result', {
     type: 'canvas',
@@ -52,9 +49,12 @@ $('#download').on('click', function (ev) {
     Caman(dl, function () {
       this.saturation(-100);
       this.render();
-      downloadImage();
     });
 
+    setTimeout(function(){
+      ReImg.fromCanvas($('#imageResult')[0]).downloadPng();
+      $('#result').empty();
+    },50);
 
   });
 });
