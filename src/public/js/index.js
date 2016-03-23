@@ -51,19 +51,18 @@ $('#download').on('click', function (ev) {
 });
 
 var downloadData = function(){
-    var data = $('#imageResult')[0].toDataURL();
+    var data = document.getElementById('imageResult').toDataURL();
 
     var a = document.createElement('a');
     a.href = data;
     a.download = "image.png"  ;
     document.body.appendChild(a);
     a.click();
+    $('#result').empty();
 }
 
 var convert = function(element,cb){
   Caman(element, function () {
-    this.greyscale().render();
+    this.greyscale().render(cb);
   });
-
-  cb();
 }
