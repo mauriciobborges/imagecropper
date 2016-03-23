@@ -46,16 +46,24 @@ $('#download').on('click', function (ev) {
     dl.setAttribute('style', 'display: none;');
     $('#result').append(dl);
 
-    Caman(dl, function () {
-      this.saturation(-100);
-      this.render();
-    });
-
-    setTimeout(function(){
-      ReImg.fromCanvas($('#imageResult')[0]).downloadPng();
-      $('#result').empty();
-    },50);
-
+    convert(dl,downloadData);
   });
 });
 
+var downloadData = function(){
+    var data = $('#imageResult')[0].toDataURL();
+
+    var a = document.createElement('a');
+    a.href = data;
+    a.download = "image.png"  ;
+    document.body.appendChild(a);
+    a.click();
+}
+
+var convert = function(element,cb){
+  Caman(element, function () {
+    this.greyscale().render();
+  });
+
+  cb();
+}
