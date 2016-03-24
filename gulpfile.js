@@ -2,17 +2,15 @@
 
 const chalk = require('chalk');
 const gulp = require('gulp');
-
 const gutil = require('gulp-util');
 const plumber = require('gulp-plumber');
 const rename = require('gulp-rename');
 const concat = require('gulp-concat');
-
 const jshint = require('gulp-jshint');
 const stylish = require('jshint-stylish');
-
 const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
+const cssmin = require('gulp-cssmin');
 
 // PATHS
 // Constants for folder paths in project
@@ -21,6 +19,7 @@ const paths = {
   dist: './dist'
 };
 paths.srcJS = paths.src + '/js/**/*.js';
+paths.srcCSS = paths.src + '/css/**/*.js';
 
 //
 // TASKS: gulp tasks
@@ -37,7 +36,7 @@ gulp.task('lint', () => {
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(jshint.reporter('fail'))
     .on('error', (error) => {
-      var errorMessage = chalk.yellow.bold.bgRed(error.message,'To many errors!!');
+      let errorMessage = chalk.yellow.bold.bgRed(error.message,'To many errors!!');
       gutil.log(errorMessage);
     });
 });
@@ -54,5 +53,21 @@ gulp.task('min:js', () => {
     }))
     .pipe(rename('bundle.min.js'))
     .pipe(sourcemaps.write('../dist'))
-    .pipe(gulp.dest(paths.dist));
+    .pipe(gulp.dest(paths.dist))
+    .on('end', (end) => {
+      let log = chalk.bold.green('minified and sourcemap JS files written on:', paths.dist);
+      gutil.log(log);
+    });
+});
+
+// Minify and concat CSS files
+gulp.task('min:css', () => {
+  gulp.src(paths.srcCSS)
+    .pipe(cssmin())
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest(paths.dist))
+    .on('end', (end) => {
+      let log = chalk.bold.green('minified CSS files written on:', paths.dist);
+      gutil.log(log);
+    });
 });
