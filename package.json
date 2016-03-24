@@ -1,0 +1,20 @@
+{
+  "name": "imagecropper",
+  "version": "1.0.0",
+  "description": "Projeto de site para corte e tratamento de uma imagem",
+  "main": "entry.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mauriciobborges/imagecropper.git"
+  },
+  "keywords": [
+    "image",
+    "cropping",
+    "webpack"
+  ],
+  "author": "Mauricio Borges, Tefferson, Eduardo Arnold",
+  "license": "MIT"
+}
