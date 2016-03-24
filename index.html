@@ -1,7 +1,7 @@
 <html>
 <head>
 	<title>Image Cutter</title>
-	<link rel="stylesheet" type="text/css" href="/css/croppie.css">
+	<link rel="stylesheet" type="text/css" href="/dist/bundle.css">
 </head>
 <body class="flex-container">
 	<h1 class='title'>Croppie</h1>
@@ -12,12 +12,9 @@
 	<div class="flex-container flex-row">
 		<input id="image" name='image' type="file" accept="image/*" />
 		<label for="image">Escolher arquivo</label>
-		<button id="download">Download</button>	
+		<button id="download">Download</button>
 		<div id="cropper"></div>
 		<div id="result"></div>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-		<script src="/js/croppie.js"></script>
-		<script src="/js/caman.full.js"></script>
-		<script src="/js/index.js"></script>
+		<script src="/dist/bundle.js"></script>
 	</body>
 </html>
