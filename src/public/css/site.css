@@ -1,0 +1,68 @@
+.flex-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.flex-container * {
+	margin: 5px;
+}
+
+.flex-row {
+	flex-direction: row;
+}
+
+.title {
+	font-size: 40px;
+	font-family: georgia;
+	color: rgba(25, 25, 25, 0.8);
+}
+
+#download, #image + label {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 25px;
+	padding-right: 25px;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	background-color: #ddd;
+	font-family: sans-serif;
+	cursor: pointer;
+	font-size: 14px;
+}
+
+#image {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+	height: 50px;
+}
+
+#image + label {
+	display: inline-block;
+}
+
+#image:focus + label,
+#image + label:hover,
+#download:hover {
+	background-color: #fafafa;
+}
+
+#image + label:active, #download:active, #image + label:focus, #download:focus {
+	outline: 0;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .flex-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #download, #image + label {
+    font-size: 20px;
+  }
+}
