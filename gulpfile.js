@@ -44,7 +44,7 @@ gulp.task('lint', () => {
 
 // Uglify, Minify and generate Sourcemaps for JS files
 gulp.task('min:js', () => {
-  gulp.src(paths.dist)
+  return gulp.src(paths.srcJS)
     .pipe(sourcemaps.init())
     .pipe(concat('bundle.js'))
     .pipe(uglify({
@@ -53,6 +53,6 @@ gulp.task('min:js', () => {
         }
     }))
     .pipe(rename('bundle.min.js'))
-    .pipe(sourcemaps.write('./dist'))
-    .pipe(gulp.dest('./dist'));
+    .pipe(sourcemaps.write('../dist'))
+    .pipe(gulp.dest(paths.dist));
 });
