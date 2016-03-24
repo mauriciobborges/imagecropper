@@ -24,9 +24,7 @@ paths.srcCSS = paths.src + '/css/**/*.js';
 //
 // TASKS: gulp tasks
 //
-gulp.task('default', () => {
-  gutil.log(chalk.bold.green('Gulp Running!'));
-});
+gulp.task('default', ['min']);
 
 // LINT
 // See: .jshintrc configuration file (http://jshint.com/docs/options/)
@@ -71,3 +69,5 @@ gulp.task('min:css', () => {
       gutil.log(log);
     });
 });
+
+gulp.task('min', ['min:js', 'min:css']);
