@@ -1,0 +1,28 @@
+/* JSHint options avaiable on http://jshint.com/docs/options/ */
+{
+  "globals":{
+    "Caman": true,
+    "$": true,
+    "swal": true
+  },
+  "bitwise": false,
+  "curly": true,
+  "eqeqeq": true,
+  "forin": true,
+  "funcscope": false,
+  "latedef": true,
+  "maxcomplexity": 3,
+  "maxdepth": 3,
+  "maxerr": 100,
+  "maxstatements":3,
+  "maxparams": 3,
+  "nocomma": true,
+  "strict": true,
+  "undef": true,
+  "unused": true,
+  "varstmt": true,
+
+  "browser": true,
+  "devel": false,
+  "esversion": 6
+}
