@@ -11,6 +11,7 @@ const stylish = require('jshint-stylish');
 const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
 const cssmin = require('gulp-cssmin');
+const bower = require('gulp-bower');
 
 // PATHS
 // Constants for folder paths in project
@@ -18,7 +19,7 @@ const paths = {
   src: './src',
   dist: './www/dist'
 };
-paths.vendorJS = paths.dist + '/vendor';
+paths.vendor = paths.dist + '/vendor';
 
 paths.srcJS = paths.src + '/js/**/*.js';
 paths.srcCSS = paths.src + '/css/**/*.js';
@@ -73,3 +74,21 @@ gulp.task('min:css', () => {
 });
 
 gulp.task('min', ['min:js', 'min:css']);
+
+// Bower
+// Instal bower dependencies on related .bowerrc.directory
+gulp.task('bower:install', () => {
+  bower()
+  .on('end', () => {
+    let log = chalk.bold.green('vendor sources installed on:', paths.vendor);
+    gutil.log(log);
+  });
+});
+
+gulp.task('bower:update', () => {
+  bower({ cmd: 'update' })
+  .on('end', () => {
+    let log = chalk.bold.green('vendor sources updated');
+    gutil.log(log);
+  });
+});
