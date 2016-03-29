@@ -29,7 +29,7 @@ paths.srcCSS = paths.src + '/css/**/*.css';
 //
 // TASKS: gulp tasks
 //
-gulp.task('default', ['min']);
+gulp.task('default', ['lint', 'build:dev']);
 
 // LINT
 // See: .jshintrc configuration file (http://jshint.com/docs/options/)
