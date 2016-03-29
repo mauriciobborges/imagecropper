@@ -12,13 +12,16 @@ const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
 const cssmin = require('gulp-cssmin');
 const bower = require('gulp-bower');
+const wiredep = require('wiredep').stream;
 
 // PATHS
 // Constants for folder paths in project
 const paths = {
   src: './src',
-  dist: './www/dist'
+  dist: './www/dist',
+  public: './www'
 };
+
 paths.vendor = paths.dist + '/vendor';
 
 paths.srcJS = paths.src + '/js/**/*.js';
@@ -91,4 +94,11 @@ gulp.task('bower:update', () => {
     let log = chalk.bold.green('vendor sources updated');
     gutil.log(log);
   });
+});
+
+// Point index.html to vendor dependencies
+gulp.task('bower:dep', ['bower:install', 'bower:update'], () => {
+  gulp.src(paths.public + '/index.html')
+    .pipe(wiredep())
+    .pipe(gulp.dest('./www/'));
 });
