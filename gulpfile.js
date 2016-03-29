@@ -3,7 +3,6 @@
 const chalk = require('chalk');
 const gulp = require('gulp');
 const gutil = require('gulp-util');
-const plumber = require('gulp-plumber');
 const rename = require('gulp-rename');
 const concat = require('gulp-concat');
 const jshint = require('gulp-jshint');
@@ -25,7 +24,7 @@ const paths = {
 paths.vendor = paths.dist + '/vendor';
 
 paths.srcJS = paths.src + '/js/**/*.js';
-paths.srcCSS = paths.src + '/css/**/*.js';
+paths.srcCSS = paths.src + '/css/**/*.css';
 
 //
 // TASKS: gulp tasks
@@ -67,8 +66,11 @@ gulp.task('min:js', () => {
 // Minify and concat CSS files
 gulp.task('min:css', () => {
   gulp.src(paths.srcCSS)
+    .pipe(sourcemaps.init())
     .pipe(cssmin())
     .pipe(rename({suffix: '.min'}))
+    .pipe(concat('bundle.min.css'))
+    .pipe(sourcemaps.write('../dist'))
     .pipe(gulp.dest(paths.dist))
     .on('end', (end) => {
       let log = chalk.bold.green('minified CSS files written on:', paths.dist);
@@ -97,8 +99,11 @@ gulp.task('bower:update', () => {
 });
 
 // Point index.html to vendor dependencies
-gulp.task('bower:dep', ['bower:install', 'bower:update'], () => {
+gulp.task('bower:dep', () => {
   gulp.src(paths.public + '/index.html')
     .pipe(wiredep())
     .pipe(gulp.dest('./www/'));
 });
+
+// Build
+gulp.task('build:dev', ['bower:install', 'min'])
