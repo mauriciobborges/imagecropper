@@ -16,8 +16,10 @@ const cssmin = require('gulp-cssmin');
 // Constants for folder paths in project
 const paths = {
   src: './src',
-  dist: './dist'
+  dist: './www/dist'
 };
+paths.vendorJS = paths.dist + '/vendor';
+
 paths.srcJS = paths.src + '/js/**/*.js';
 paths.srcCSS = paths.src + '/css/**/*.js';
 

@@ -63,6 +63,9 @@ var downloadData = function(){
 
 var convert = function(element,cb){
   Caman(element, function () {
-    this.greyscale().render(cb);
+    if($('#filter').is(":checked")){
+      this.greyscale();
+    }
+    this.render(cb);
   });
 }
