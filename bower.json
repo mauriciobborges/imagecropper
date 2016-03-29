@@ -1,0 +1,31 @@
+{
+  "name": "imagecropper",
+  "description": "Projeto de site para corte e tratamento de uma imagem",
+  "main": "entry.js",
+  "authors": [
+    "Mauricio Borges",
+    "Tefferson",
+    "Eduardo Arnold"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "image",
+    "cropping",
+    "webpack"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.2",
+    "Croppie": "croppie#^2.0.2",
+    "caman": "^4.1.2"
+  }
+}
